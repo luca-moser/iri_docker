@@ -54,7 +54,7 @@ services:
     network_mode: "host"
 
   node-exporter:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter:v0.15.2
     container_name: prom-nodeexp
     hostname: node-exporter
     restart: unless-stopped
