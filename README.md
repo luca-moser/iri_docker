@@ -17,7 +17,7 @@ prerequisites:
 
 clone the repository:
 ```
-git clone github.com/luca-moser/iri_docker
+git clone https://github.com/luca-moser/iri_docker.git
 ```
 
 execute the setup file and give it your domain as a parameter (i.e. iota-tangle.io):
