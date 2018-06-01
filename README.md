@@ -32,7 +32,7 @@ chmod +x setup.sh
 
 The setup script automatically installs docker, docker-compose and boots up the service with the given docker-compose.yml file. 
 The IRI API will be served via Caddy on https://{YOUR_DOMAIN_NAME}:14265. Caddy will handle automatic TLS certificate updates and execute `attachToTangle` in
-it's `attach` middleware for faster PoW times. Grafana will be available under https://monitor.{YOUR_DOMAIN_NAME}:3000.
+it's `attach` middleware for faster PoW times. Grafana will be available under https://monitor.{YOUR_DOMAIN_NAME}:8080.
 
 **Make sure to change the password of the Grafana dashboard admin user!**
 
