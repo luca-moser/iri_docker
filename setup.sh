@@ -1,8 +1,16 @@
 #!/bin/bash
 DOMAIN=$1
-echo "starting iri setup:"
 
+if [ -z "$1" ]
+then
+	echo "please supply the domain name as the first argument."
+	exit 1
+fi	
+
+echo "starting iri setup:"
 echo "will create iri service under ${DOMAIN}:14265 and Grafana dashboard under monitor.${DOMAIN}:3000"
+sleep 3
+echo ""
 
 # install required dependencies
 apt update && apt install -y git apt-transport-https ca-certificates curl jq software-properties-common

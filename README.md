@@ -42,9 +42,14 @@ However, we are not done yet:
 First, stop all the services with `./service.sh stop`.
 
 While IRI was already running, it wasn't usable yet. You now have to first download a fresh snapshot of the database and add it under
-`./volumes/iota/mainnetdb`. I recommend you download the snapshot via `wget http://db.iota.partners/IOTA.partners-mainnetdb.tar.gz`.
-Then, make sure to hop onto the IOTA Discord server and go to the #nodesharing channel to find neighbours for your node.
+`./volumes/iri/mainnetdb`. I recommend you download the snapshot via `wget http://db.iota.partners/IOTA.partners-mainnetdb.tar.gz`.
+
+**Neighbours:**
+Make sure to hop onto the IOTA Discord server and go to the #nodesharing channel to find neighbours for your node.
+Ask for UDP URIs if possible as apparently TCP connections might randomly drop and not reinstantiate themselves.
 I don't recommend to use Nelson as its implications on the network are not yet fully understood. **Add max. 4 neighbours to your node.**
+You can simply add a new neighbour by doing `./add.sh <neighbour>`, however, make sure to also add the URI to `./volumes/iri/iota.ini` under
+the `NEIGHBOURS` property.
 
 # Meta
 
