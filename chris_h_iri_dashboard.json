@@ -911,43 +911,6 @@
             "type":"row"
          },
          {
-            "alert":{
-               "conditions":[
-                  {
-                     "evaluator":{
-                        "params":[
-                           90
-                        ],
-                        "type":"gt"
-                     },
-                     "operator":{
-                        "type":"and"
-                     },
-                     "query":{
-                        "params":[
-                           "A",
-                           "5m",
-                           "now"
-                        ]
-                     },
-                     "reducer":{
-                        "params":[
-
-                        ],
-                        "type":"avg"
-                     },
-                     "type":"query"
-                  }
-               ],
-               "executionErrorState":"alerting",
-               "frequency":"60s",
-               "handler":1,
-               "name":"CPU Usage alert",
-               "noDataState":"no_data",
-               "notifications":[
-
-               ]
-            },
             "aliasColors":{
 
             },
@@ -1060,43 +1023,6 @@
             ]
          },
          {
-            "alert":{
-               "conditions":[
-                  {
-                     "evaluator":{
-                        "params":[
-                           7526142158
-                        ],
-                        "type":"gt"
-                     },
-                     "operator":{
-                        "type":"and"
-                     },
-                     "query":{
-                        "params":[
-                           "A",
-                           "5m",
-                           "now"
-                        ]
-                     },
-                     "reducer":{
-                        "params":[
-
-                        ],
-                        "type":"avg"
-                     },
-                     "type":"query"
-                  }
-               ],
-               "executionErrorState":"alerting",
-               "frequency":"60s",
-               "handler":1,
-               "name":"Memory Usage alert",
-               "noDataState":"no_data",
-               "notifications":[
-
-               ]
-            },
             "aliasColors":{
 
             },
@@ -1399,44 +1325,6 @@
             "type":"row"
          },
          {
-            "alert":{
-               "conditions":[
-                  {
-                     "evaluator":{
-                        "params":[
-                           0.01
-                        ],
-                        "type":"lt"
-                     },
-                     "operator":{
-                        "type":"and"
-                     },
-                     "query":{
-                        "params":[
-                           "A",
-                           "3m",
-                           "now"
-                        ]
-                     },
-                     "reducer":{
-                        "params":[
-
-                        ],
-                        "type":"avg"
-                     },
-                     "type":"query"
-                  }
-               ],
-               "executionErrorState":"alerting",
-               "frequency":"60s",
-               "handler":1,
-               "message":"hotsexcoffee.com  zmq is malfunctioning",
-               "name":"TPS vs CTPS alert",
-               "noDataState":"no_data",
-               "notifications":[
-
-               ]
-            },
             "aliasColors":{
 
             },
@@ -3583,43 +3471,6 @@
             "id":100,
             "panels":[
                {
-                  "alert":{
-                     "conditions":[
-                        {
-                           "evaluator":{
-                              "params":[
-                                 15
-                              ],
-                              "type":"gt"
-                           },
-                           "operator":{
-                              "type":"and"
-                           },
-                           "query":{
-                              "params":[
-                                 "A",
-                                 "1m",
-                                 "now"
-                              ]
-                           },
-                           "reducer":{
-                              "params":[
-
-                              ],
-                              "type":"avg"
-                           },
-                           "type":"query"
-                        }
-                     ],
-                     "executionErrorState":"alerting",
-                     "frequency":"60s",
-                     "handler":1,
-                     "name":"Neighbor Count alert",
-                     "noDataState":"no_data",
-                     "notifications":[
-
-                     ]
-                  },
                   "aliasColors":{
 
                   },
@@ -3718,43 +3569,6 @@
                   ]
                },
                {
-                  "alert":{
-                     "conditions":[
-                        {
-                           "evaluator":{
-                              "params":[
-                                 1
-                              ],
-                              "type":"gt"
-                           },
-                           "operator":{
-                              "type":"and"
-                           },
-                           "query":{
-                              "params":[
-                                 "A",
-                                 "1h",
-                                 "now"
-                              ]
-                           },
-                           "reducer":{
-                              "params":[
-
-                              ],
-                              "type":"avg"
-                           },
-                           "type":"query"
-                        }
-                     ],
-                     "executionErrorState":"alerting",
-                     "frequency":"60s",
-                     "handler":1,
-                     "name":"Dead Neighbor Count alert",
-                     "noDataState":"no_data",
-                     "notifications":[
-
-                     ]
-                  },
                   "aliasColors":{
 
                   },
@@ -3852,43 +3666,6 @@
                   ]
                },
                {
-                  "alert":{
-                     "conditions":[
-                        {
-                           "evaluator":{
-                              "params":[
-                                 2
-                              ],
-                              "type":"gt"
-                           },
-                           "operator":{
-                              "type":"and"
-                           },
-                           "query":{
-                              "params":[
-                                 "A",
-                                 "5m",
-                                 "now"
-                              ]
-                           },
-                           "reducer":{
-                              "params":[
-
-                              ],
-                              "type":"max"
-                           },
-                           "type":"query"
-                        }
-                     ],
-                     "executionErrorState":"alerting",
-                     "frequency":"60s",
-                     "handler":1,
-                     "name":"Milestone alert",
-                     "noDataState":"no_data",
-                     "notifications":[
-
-                     ]
-                  },
                   "aliasColors":{
 
                   },
@@ -3985,43 +3762,6 @@
                   ]
                },
                {
-                  "alert":{
-                     "conditions":[
-                        {
-                           "evaluator":{
-                              "params":[
-                                 0.2
-                              ],
-                              "type":"lt"
-                           },
-                           "operator":{
-                              "type":"and"
-                           },
-                           "query":{
-                              "params":[
-                                 "A",
-                                 "1m",
-                                 "now"
-                              ]
-                           },
-                           "reducer":{
-                              "params":[
-
-                              ],
-                              "type":"avg"
-                           },
-                           "type":"query"
-                        }
-                     ],
-                     "executionErrorState":"alerting",
-                     "frequency":"60s",
-                     "handler":1,
-                     "name":"Panel Title alert",
-                     "noDataState":"no_data",
-                     "notifications":[
-
-                     ]
-                  },
                   "aliasColors":{
 
                   },
