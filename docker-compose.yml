@@ -24,7 +24,7 @@ services:
       - ./volumes/caddy/.caddy:/app/.caddy
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - CADDYPATH=/app
+      - CADDYPATH=/app/.caddy
     network_mode: "host"
 
   prometheus:
