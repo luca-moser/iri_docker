@@ -1,0 +1,51 @@
+{IRI_URL}:14265 {
+        gzip
+
+        log /app/logs/iri.log {
+                rotate_size 100
+                rotate_age  90
+                rotate_keep 20
+                rotate_compress
+        }
+
+        # force HSTS
+        header / Strict-Transport-Security "max-age=31536000;"
+
+        # limit request size to 20 megabytes
+        limits 20mb
+
+        # intercept attachToTangle requests
+        attach
+
+        # rate limit to 10 reqs per second with 20 burst
+        ratelimit * / 10 20 second
+
+        proxy / {IRI_URL}:14264 {
+                # auto add iri api header
+                header_upstream X-IOTA-API-VERSION 1.4
+                header_upstream Access-Control-Allow-Origin *
+        }
+}
+
+monitor.{IRI_URL}:3000 {
+        gzip
+
+        log /app/logs/monitor.log {
+                rotate_size 100
+                rotate_age  90
+                rotate_keep 20
+                rotate_compress
+        }
+
+        # force HSTS
+        header / Strict-Transport-Security "max-age=31536000;"        
+
+        # limit request size to 20 megabytes
+        limits 20mb
+
+        # rate limit to 10 reqs per second with 20 burst
+        ratelimit * / 10 20 second
+
+        # proxy into Grafana
+        proxy / 127.0.0.1:3000
+}

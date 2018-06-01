@@ -1,0 +1,85 @@
+version: "3.1"
+
+services:
+  iri:
+    image: iotaledger/iri:v1.4.2.4
+    container_name: iri
+    hostname: iri
+    restart: unless-stopped
+    volumes:
+      - ./volumes/iri/iota.ini:/iri/iota.ini:ro
+      - ./volumes/iri/ixi:/iri/ixi:rw
+      - ./volumes/iri/mainnetdb:/iri/mainnetdb:rw
+      - /etc/localtime:/etc/localtime:ro
+    network_mode: "host"
+
+  caddy:
+    image: lucamoser/caddy-iri:latest
+    container_name: caddy
+    hostname: caddy
+    restart: unless-stopped
+    volumes:
+      - ./volumes/caddy/Caddyfile:/app/Caddyfile
+      - ./volumes/caddy/logs:/app/logs
+      - ./volumes/caddy/.caddy:/app/.caddy
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - CADDYPATH=/app
+    network_mode: "host"
+
+  prometheus:
+    image: prom/prometheus:v2.2.1
+    container_name: prometheus
+    hostname: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./volumes/prometheus/data:/data
+      - ./volumes/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /etc/localtime:/etc/localtime:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/data"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+    network_mode: "host"
+
+  iota-prom-exporter:
+    image: crholliday/iota-prom-exporter:latest
+    container_name: prom-iotaexp
+    hostname: iotape
+    restart: on-failure
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./volumes/iota_exporter/config.js:/exporter/config.js
+    network_mode: "host"
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: prom-nodeexp
+    hostname: node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+      - /etc/localtime:/etc/localtime:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points"
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/var/lib/docker|rootfs/run/docker/netns|rootfs/sys/kernel/debug/tracing)($$|/)"
+    network_mode: "host"
+
+  grafana:
+    image: grafana/grafana:5.0.3
+    container_name: iota_grafana
+    restart: on-failure
+    volumes:
+      - ./volumes/grafana:/var/lib/grafana
+      - ./volumes/grafana/config/grafana.ini:/etc/grafana/grafana.ini
+      - ./volumes/grafana/config/defaults.ini:/usr/share/grafana/conf/defaults.ini
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - GF_SERVER_HTTP_ADDRESS=127.0.0.1
+      - GF_SERVER_PROTOCOL=http
+    network_mode: "host"
