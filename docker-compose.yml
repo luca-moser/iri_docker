@@ -23,6 +23,7 @@ services:
       - ./volumes/caddy/logs:/app/logs
       - ./volumes/caddy/.caddy:/app/.caddy
       - /etc/localtime:/etc/localtime:ro
+      - /etc/ssl/certs:/etc/ssl/certs:ro
     environment:
       - CADDYPATH=/app/.caddy
     network_mode: "host"

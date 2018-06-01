@@ -30,7 +30,7 @@ docker-compose --version
 
 # make shell scripts executable
 chmod +x *.sh
-chmod -r 777 ./volumes/prometheus/data
+chmod 777 ./volumes/prometheus/data
 
 # block ports from the outside
 echo "blocking IRI, Prometheus and Prom-Node-Exporter ports from outside connections:"
