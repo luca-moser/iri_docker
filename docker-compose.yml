@@ -27,10 +27,12 @@ services:
     environment:
       - CADDYPATH=/app/.caddy
     network_mode: "host"
+    depends_on:
+      - iri
 
   prometheus:
     image: prom/prometheus:v2.2.1
-    container_name: prometheus
+    container_name: iri_prometheus
     hostname: prometheus
     restart: unless-stopped
     volumes:
@@ -43,11 +45,15 @@ services:
       - "--web.console.libraries=/usr/share/prometheus/console_libraries"
       - "--web.console.templates=/usr/share/prometheus/consoles"
     network_mode: "host"
+    depends_on:
+      - iri
+      - iri-exporter
+      - node-exporter
 
-  iota-prom-exporter:
+  iri-exporter:
     image: crholliday/iota-prom-exporter:latest
-    container_name: prom-iotaexp
-    hostname: iotape
+    container_name: iri_exporter
+    hostname: iri-exporter
     restart: on-failure
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -56,7 +62,7 @@ services:
 
   node-exporter:
     image: prom/node-exporter:v0.15.2
-    container_name: prom-nodeexp
+    container_name: iri_node_exporter
     hostname: node-exporter
     restart: unless-stopped
     volumes:
@@ -73,8 +79,9 @@ services:
 
   grafana:
     image: grafana/grafana:5.1.3
-    container_name: iota_grafana
+    container_name: iri_grafana
     restart: on-failure
+    user: "104"    
     volumes:
       - ./volumes/grafana:/var/lib/grafana
       - ./volumes/grafana/config/grafana.ini:/etc/grafana/grafana.ini
@@ -84,3 +91,5 @@ services:
       - GF_SERVER_HTTP_ADDRESS=127.0.0.1
       - GF_SERVER_PROTOCOL=http
     network_mode: "host"
+    depends_on:
+      - prometheus
