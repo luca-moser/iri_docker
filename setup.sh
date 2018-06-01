@@ -9,7 +9,7 @@ apt update && apt install -y git apt-transport-https ca-certificates curl jq sof
 
 # install docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs)stable"
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 apt update && apt install -y docker-ce
 echo "verifying docker installation:"
 docker --version
@@ -43,7 +43,7 @@ sed -i 's/{IRI_URL}/'$DOMAIN'/g' ./volumes/caddy/Caddyfile
 
 # boot up service
 echo "booting up service:"
-./service start
+./service.sh start
 
 echo "iri, caddy, prometheus and grafana are now running"
 echo "iri API port is available under https://${DOMAIN}:14265"
