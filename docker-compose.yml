@@ -81,7 +81,7 @@ services:
     image: grafana/grafana:5.1.3
     container_name: iri_grafana
     restart: on-failure
-    user: "104"    
+    user: "root"    
     volumes:
       - ./volumes/grafana:/var/lib/grafana
       - ./volumes/grafana/config/grafana.ini:/etc/grafana/grafana.ini
