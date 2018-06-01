@@ -43,7 +43,7 @@ sed -i 's/{IRI_URL}/'$DOMAIN'/g' ./volumes/caddy/Caddyfile
 
 # boot up service
 echo "booting up service:"
-./serivce start
+./service start
 
 echo "iri, caddy, prometheus and grafana are now running"
 echo "iri API port is available under https://${DOMAIN}:14265"
