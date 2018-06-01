@@ -11,7 +11,7 @@ if [ -z "$1" ]
 then
 	echo -e "${Red}please supply the domain name as the first argument."
 	exit 1
-fi	
+fi
 
 echo -e "${White}starting iri setup:"
 echo -e "will create iri service under ${DOMAIN}:14265 and Grafana dashboard under monitor.${DOMAIN}:8080"

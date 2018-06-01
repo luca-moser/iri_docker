@@ -72,7 +72,7 @@ services:
     network_mode: "host"
 
   grafana:
-    image: grafana/grafana:5.0.3
+    image: grafana/grafana:5.1.3
     container_name: iota_grafana
     restart: on-failure
     volumes:
