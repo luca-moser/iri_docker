@@ -4,5 +4,5 @@
   "url":"http://localhost:9090",
   "access":"proxy",
   "basicAuth": false,
-  "isDefault":false
+  "isDefault": true
 }
