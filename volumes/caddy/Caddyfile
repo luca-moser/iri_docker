@@ -27,7 +27,7 @@
         }
 }
 
-monitor.{IRI_URL}:3000 {
+monitor.{IRI_URL}:8080 {
         gzip
 
         log /app/logs/monitor.log {
@@ -43,8 +43,8 @@ monitor.{IRI_URL}:3000 {
         # limit request size to 20 megabytes
         limits 20mb
 
-        # rate limit to 10 reqs per second with 20 burst
-        ratelimit * / 10 20 second
+        # rate limit to 60 reqs per second with 20 burst
+        ratelimit * / 60 20 second
 
         # proxy into Grafana
         proxy / 127.0.0.1:3000

@@ -22,9 +22,10 @@ docker-compose --version
 
 # make shell scripts executable
 chmod +x *.sh
+chmod -r 777 ./volumes/prometheus/data
 
 # block ports from the outside
-echo "blocking iri, prometheus and prom-node-exporter ports from outside connections:"
+echo "blocking IRI, Prometheus and Prom-Node-Exporter ports from outside connections:"
 # iri
 iptables -A INPUT -p tcp -i eth0 --dport 14264 -j DROP
 iptables -A INPUT -p udp -i eth0 --dport 14264 -j DROP
@@ -45,6 +46,23 @@ sed -i 's/{IRI_URL}/'$DOMAIN'/g' ./volumes/caddy/Caddyfile
 echo "booting up service:"
 ./service.sh start
 
-echo "iri, caddy, prometheus and grafana are now running"
-echo "iri API port is available under https://${DOMAIN}:14265"
-echo "Grafana dashboard is available under https://monitor.${DOMAIN}:3000"
+sleep 10
+
+GRAFANA_URL="http://admin:admin@127.0.0.1:3000"
+
+# add datasource to Grafana
+curl -s -f -S --request POST $GRAFANA_URL/api/datasources -H "Content-Type: application/json" --data-binary @grafana_datasource.json
+
+# add dashboard to Grafana
+curl -s -f -S --request POST $GRAFANA_URL/api/dashboards/db -H "Content-Type: application/json" --data-binary @chris_h_iri_dashboard.json
+
+echo ""
+echo ""
+echo "IRI, Caddy, Prometheus and Grafana are now running"
+echo "IRI API port is available under https://${DOMAIN}:14265"
+echo "Grafana is available under https://monitor.${DOMAIN}:3000"
+echo "Make sure to change the admin user's password for Grafana!"
+echo "You will start to see metrics once you've added at least one IRI neighbour."
+echo ""
+echo "Start to add neighbours by using add.sh AND modifying ./volumes/iri/iota.ini"
+echo "Thanks for installing IRI!"
