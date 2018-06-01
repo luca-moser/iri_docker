@@ -6,6 +6,7 @@ Features:
 * Everything runs inside a docker container
 * All configuration files are mapped to the host system
 * `attachToTangle` requests are executed by a middleware with SSE PoW
+* API requests to IRI are rate limited to ensure it doesn't overload
 * Grafana dashboard with data from Chris H.'s iota prometheus exporter 
 
 # Installation
@@ -42,7 +43,7 @@ First, stop all the services with `./service.sh stop`.
 
 While IRI was already running, it wasn't usable yet. You now have to first download a fresh snapshot of the database and add it under
 `./volumes/iota/mainnetdb`. I recommend you download the snapshot via `wget http://db.iota.partners/IOTA.partners-mainnetdb.tar.gz`.
-Then, make sure to hop onto the Discord server and go to the #nodesharing channel to find neighbours for your node.
+Then, make sure to hop onto the IOTA Discord server and go to the #nodesharing channel to find neighbours for your node.
 I don't recommend to use Nelson as its implications on the network are not yet fully understood. **Add max. 4 neighbours to your node.**
 
 # Meta
